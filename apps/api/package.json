@@ -1,0 +1,11 @@
+{
+  "name": "@trade/api",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/server.js",
+    "test": "vitest run --config ../../vitest.config.ts"
+  }
+}

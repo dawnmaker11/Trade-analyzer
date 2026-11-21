@@ -1,0 +1,55 @@
+{
+  "name": "trade-analyzer",
+  "private": true,
+  "type": "module",
+  "version": "0.1.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "services/*"
+  ],
+  "overrides": {
+    "light-my-request": {
+      "cookie": "1.0.2"
+    }
+  },
+  "scripts": {
+    "check": "npm run check:workspace && tsc --noEmit -p apps/api/tsconfig.json && vue-tsc --noEmit -p apps/web/tsconfig.json",
+    "check:workspace": "node scripts/check-workspace.mjs",
+    "test": "vitest run --config vitest.config.ts",
+    "build": "npm run build:api && npm run build:worker && npm run build:web",
+    "build:api": "tsc -p apps/api/tsconfig.json",
+    "build:worker": "tsc -p apps/worker/tsconfig.json",
+    "build:web": "npm run build --workspace @trade/web",
+    "migrate": "node db/migrate.mjs",
+    "reset:owner-password": "node scripts/reset-owner-password.mjs",
+    "dev:api": "powershell -NoProfile -Command \"$env:TRADE_RUN_SERVER='1'; npx tsx watch apps/api/src/server.ts\"",
+    "dev:web": "npm run dev --workspace @trade/web",
+    "dev:worker": "npm run dev --workspace @trade/worker",
+    "start": "powershell -ExecutionPolicy Bypass -File scripts/start-local.ps1",
+    "stop": "powershell -ExecutionPolicy Bypass -File scripts/stop-local.ps1",
+    "status": "powershell -ExecutionPolicy Bypass -File scripts/status-local.ps1"
+  },
+  "engines": {
+    "node": ">=20",
+    "npm": ">=10"
+  },
+  "dependencies": {
+    "@fastify/cookie": "^11.1.5",
+    "@fastify/cors": "^11.4.3",
+    "fastify": "^5.12.8",
+    "pg": "^8.23.1",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "@types/pg": "^8.23.1",
+    "@vitejs/plugin-vue": "^6.0.11",
+    "tsx": "^4.23.15",
+    "typescript": "^6.0.3",
+    "vite": "^8.3.8",
+    "vitest": "^4.1.12",
+    "vue": "^3.5.45",
+    "vue-tsc": "^3.3.14"
+  }
+}

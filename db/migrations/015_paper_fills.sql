@@ -1,0 +1,2 @@
+CREATE TABLE IF NOT EXISTS virtual_fills (fill_id UUID PRIMARY KEY, order_id UUID NOT NULL UNIQUE REFERENCES virtual_orders(order_id) ON DELETE CASCADE, owner_id UUID NOT NULL REFERENCES users(owner_id) ON DELETE CASCADE, fill_price NUMERIC(20,4) NOT NULL CHECK(fill_price>0), fee NUMERIC(20,4) NOT NULL DEFAULT 0 CHECK(fee>=0), filled_at TIMESTAMPTZ NOT NULL, mode TEXT NOT NULL DEFAULT 'synthetic' CHECK(mode='synthetic'));
+INSERT INTO schema_migrations (version) VALUES ('015_paper_fills') ON CONFLICT (version) DO NOTHING;

@@ -1,0 +1,32 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Trade: API",
+      "type": "npm",
+      "script": "dev:api",
+      "isBackground": true,
+      "problemMatcher": []
+    },
+    {
+      "label": "Trade: Web",
+      "type": "npm",
+      "script": "dev:web",
+      "isBackground": true,
+      "problemMatcher": []
+    },
+    {
+      "label": "Trade: Worker",
+      "type": "npm",
+      "script": "dev:worker",
+      "isBackground": true,
+      "problemMatcher": []
+    },
+    {
+      "label": "Trade: Start in VS Code terminals",
+      "dependsOn": ["Trade: API", "Trade: Web", "Trade: Worker"],
+      "dependsOrder": "parallel",
+      "problemMatcher": []
+    }
+  ]
+}

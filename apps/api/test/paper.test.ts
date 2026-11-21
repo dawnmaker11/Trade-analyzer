@@ -1,0 +1,1 @@
+import {describe,expect,it} from 'vitest';import {reserveCash} from '../src/paper.js';describe('Epic 13 synthetic ledger',()=>{it('reserves cash and rejects overspend',()=>{expect(reserveCash(1000,2,400,10)).toMatchObject({required:810,remaining:190});expect(()=>reserveCash(10,1,11)).toThrow('Insufficient');});});

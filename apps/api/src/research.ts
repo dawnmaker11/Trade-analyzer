@@ -1,0 +1,2 @@
+export const transitions: Record<string, string[]> = { DRAFT: ['READY_TO_EXPORT','CANCELLED'], READY_TO_EXPORT: ['AWAITING_IMPORT','CANCELLED','SUPERSEDED'], AWAITING_IMPORT: ['VALIDATING','CANCELLED','SUPERSEDED'], VALIDATING: ['NEEDS_REVIEW','REJECTED'], NEEDS_REVIEW: ['ACCEPTED','REJECTED'], ACCEPTED: [], REJECTED: [], CANCELLED: [], SUPERSEDED: [] };
+export function canTransition(from: string, to: string) { return transitions[from]?.includes(to) ?? false; }
